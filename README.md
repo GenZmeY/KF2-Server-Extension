@@ -84,6 +84,7 @@ In the description of the pull request, describe the changes you made.
 [GenZmeY](https://steamcommunity.com/profiles/76561198001617867)  
 [secret](https://steamcommunity.com/profiles/76561198042219365)  
 [Scaredkid93](https://steamcommunity.com/profiles/76561198004271210)  
+[小曦曦](https://steamcommunity.com/profiles/76561198200630473)  
 
 **Translators:**  
 [GenZmeY](https://steamcommunity.com/profiles/76561198001617867) - Russian [RUS];  
