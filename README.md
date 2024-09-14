@@ -99,4 +99,4 @@ In the description of the pull request, describe the changes you made.
 ***
 
 **Note about the banner:**  
-The cat in the picture is [meowbin](https://twitter.com/meawbinneko). And [Cotton Valent](https://twitter.com/horrormove) is the artist who designed and painted this magnificent cat.
+The cat in the picture is [meawbin](https://twitter.com/meawbinneko). And [Cotton Valent](https://twitter.com/horrormove) is the artist who designed and painted this magnificent cat.
