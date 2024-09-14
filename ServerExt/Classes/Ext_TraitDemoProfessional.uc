@@ -15,7 +15,7 @@ static function bool MeetsRequirements(byte Lvl, Ext_PerkBase Perk)
 {
 	local int i;
 
-	if (Perk.CurrentLevel<Default.MinLevel || Perk.CurrentPrestige<3)
+	if (Perk.CurrentLevel<Default.MinLevel || Perk.CurrentPrestige<1)
 		return false;
 
 	if (Lvl==0)
