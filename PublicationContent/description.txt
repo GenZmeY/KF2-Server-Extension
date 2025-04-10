@@ -2,127 +2,118 @@
 
 [img]https://img.shields.io/static/v1?logo=GitHub&labelColor=gray&color=blue&logoColor=white&label=&message=Open Source[/img] [img]https://img.shields.io/github/license/GenZmeY/KF2-Server-Extension[/img] [img]https://img.shields.io/steam/downloads/2085786712[/img] [img]https://img.shields.io/steam/favorites/2085786712[/img] [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2085786712] [img]https://img.shields.io/steam/update-date/2085786712[/img] [img]https://img.shields.io/github/v/tag/GenZmeY/KF2-Server-Extension[/img][/url]
 
-[h1]Description:[/h1]
-[i]This mod replaces current perk system in Killing Floor 2 with a serverside perk progression with RPG elements, which let you buy individual stats and traits.
+[h1]📋 Description:[/h1]
+This mod replaces current perk system in Killing Floor 2 with a serverside perk progression with RPG elements, which let you buy individual stats and traits.
 
-This is a further development of the ServerExt mutator from [url=https://steamcommunity.com/sharedfiles/filedetails/?id=681440898]Marco[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?l=english&id=1207269970]Forrest Mark X[/url].[/i]
+This is a further development of the ServerExt mutator from [url=https://steamcommunity.com/sharedfiles/filedetails/?id=681440898]Marco[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?l=english&id=1207269970]Forrest Mark X[/url].
 
-[h1]Features[/h1]
-[list]
-[*]RPG elements (traits and stats);
-[*]New menu system;
-[*]Scoreboard that supports unlimited playercount on server;
-[*]Supports custom characters and weapons;
-[*]Enhanced HUD feedback (kill/damage messages);
-[*]First person legs and backpack weapon;
-[*][b]Customizable experience for killing custom zeds;[/b]
-[*][b]DLC weapons are available for purchase from the trader;[/b]
-[*][b]Localization support.[/b]
-[/list]
-The full changelog is available [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2085786712]here[/url].
-
-[h1]Usage (single player)[/h1]
+[h1]🎮 Usage (single player)[/h1]
 [olist]
-[*]Subscribe to this mutator;
-[*]Start KF2;
-[*]Open console (`) and input:
+[*]Subscribe to this mutator.
+[*]Create a file [b](*)[/b]: [code]C:\Users\<username>\Documents\My Games\KillingFloor2\KFGame\Config\KFServerExtMut.ini[/code]
+with content:
+[code][ServerExtMut.ServerExtMut]
+SettingsInit=0[/code]
+[*]Create a file [b](*)[/b]: [code]C:\Users\<username>\Documents\My Games\KillingFloor2\KFGame\Config\KFxMapVote.ini[/code]
+with content:
+[code][ServerExtMut.xVotingHandler]
+ConfigVersion=0[/code]
+[*]Create a file [b](*)[/b]: [code]C:\Users\<username>\Documents\My Games\KillingFloor2\KFGame\Config\KFServerExt.ini[/code]
+with content: [url=https://gist.githubusercontent.com/GenZmeY/616b6f845f9829c93976f42f6c48505a/raw/1a8c8409d61a2908d5c854ced0932b8ed43a7f51/KFServerExt-Default.ini]KFServerExt.ini (default)[/url]
+[*]Launch KF2.
+[*]Open console (~) and start any map with the mutator (this will generate the contents of the configs):
 [code]open KF-BioticsLab?Mutator=ServerExtMut.ServerExtMut[/code]
-(You can add some options or replace KF-BioticsLab with the map you want)
+[*]Close the game and configure the mutator (see [b]⚙️ Setup[/b] link below).
+[*]Launch KF2 again, open the console, and start the game:
+[code]KF-BioticsLab?Game=KFGameContent.KFGameInfo_Survival?Difficulty=3?GameLength=2?Mutator=ServerExtMut.ServerExtMut[/code]
+(replace the map and set/add parameters you need).
 [/olist]
 
-[h1]Usage (server)[/h1]
-[b]Note:[/b] [i]If you don't understand what is written here, read the article [url=https://wiki.killingfloor2.com/index.php?title=Dedicated_Server_(Killing_Floor_2)][u]Dedicated Server (KF2 wiki)[/u][/url] before following these instructions.[/i]
+[h1]🖥️ Usage (server)[/h1]
+[b]Note:[/b] [i]If this is unclear, first read: [url=https://wiki.killingfloor2.com/index.php?title=Dedicated_Server_(Killing_Floor_2)][u]Dedicated Server Guide (KF2 wiki)[/u][/url][/i]
 [olist]
-[*]Open your [b]PCServer-KFEngine.ini[/b] / [b]LinuxServer-KFEngine.ini[/b];
-[*]Find the [b][IpDrv.TcpNetDriver][/b] section and make sure that there is a line (add if not):
-[b]DownloadManagers=OnlineSubsystemSteamworks.SteamWorkshopDownload[/b]
-❗️ If there are several [b]DownloadManagers=[/b] then the line above should be the first ❗️
+[*]Open [b]PCServer-KFEngine.ini[/b] / [b]LinuxServer-KFEngine.ini[/b].
+[*]Find [b][IpDrv.TcpNetDriver][/b] section and ensure line exists (add if missing):
+[code]DownloadManagers=OnlineSubsystemSteamworks.SteamWorkshopDownload[/code]
+(If there are several [b]DownloadManagers[/b] then the line above should be the first)
 [*]Add the following string to the [b][OnlineSubsystemSteamworks.KFWorkshopSteamworks][/b] section (create one if it doesn't exist):
-[b]ServerSubscribedWorkshopItems=2085786712[/b]
-[*]Start the server and wait while the mutator is downloading;
-[*]Add mutator to server start parameters: [b]?Mutator=ServerExtMut.ServerExtMut[/b] and restart the server.
+[code]ServerSubscribedWorkshopItems=2085786712[/code]
+[*]Start server and wait for mutator download.
+[*]When the download is complete, stop the server.
+[*]Create a file [b](*)[/b]: [code]<kf2-server>\KFGame\Config\KFServerExtMut.ini[/code]
+with content:
+[code][ServerExtMut.ServerExtMut]
+SettingsInit=0[/code]
+[*]Create a file [b](*)[/b]: [code]<kf2-server>\KFGame\Config\KFxMapVote.ini[/code]
+with content:
+[code][ServerExtMut.xVotingHandler]
+ConfigVersion=0[/code]
+[*]Create a file [b](*)[/b]: [code]<kf2-server>\KFGame\Config\KFServerExt.ini[/code]
+with content: [url=https://gist.githubusercontent.com/GenZmeY/616b6f845f9829c93976f42f6c48505a/raw/1a8c8409d61a2908d5c854ced0932b8ed43a7f51/KFServerExt-Default.ini]KFServerExt.ini (default)[/url]
+[*]Add mutator to server start parameters: [code]?Mutator=ServerExtMut.ServerExtMut[/code] and start the server (this will generate the contents of the configs).
+[*]Stop the server and configure the mutator (see [b]⚙️ Setup[/b] link below).
+[*]Start the server.
 [/olist]
 
-[h1]Mutator setup[/h1]
-[url=https://steamcommunity.com/workshop/filedetails/discussion/2085786712/4241773359646835902/][u]Look here[/u][/url]
+[h1]🐞 (*) Buggy config initialization[/h1]
+This mutator (like many others) relies on UnrealScript's default values (0 for int type) to detect first-time use and generate a config.
+However, the game contains a bug that initializes unset values to random data, which can lead to incorrect settings or missing configs.
 
-[h1]Is it possible to make the game harder?[/h1]
-It will be more efficient to use ServerExt together with other mutators (which add new zeds or game modes).
-You can use [u][url=https://steamcommunity.com/workshop/filedetails/discussion/2085786712/4241773359647296750/]my experience[/url][/u] or come up with something of your own.
+As a workaround, I recommend explicitly setting version variables in the configs during the first initialization.
 
-[h1]If not working or you have no text[/h1]
-Older versions of Server-Ext have the same file names - this can cause conflicts if you subscribe to them. Therefore:
-1. Check your subscriptions. If you are subscribed to old versions of the mutator, cancel them.
-2. Clear the cache (the game doesn't clear it). It's here:
-[code]
-Client:
-C:\Users\<YOUR_USERNAME>\Documents\My Games\KillingFloor2\KFGame\Cache\
+Unfortunately, I can't fix this issue because it's a game engine problem (not the mutator's fault).
 
-Server:
-<KF2_DIR>/Binaries/Win64/steamapps/workshop/content/232090/
-<KF2_DIR>/KFGame/Cache/
-[/code]
-If it’s not a problem for you to download all subscriptions again, you can simply clear this folder(s). Your subscriptions are downloaded the next time you start the game/server.
-If you do not want to download the subscriptions again, delete only those folders that contain the files:
-[code]
-ServerExt.u
-ServerExtMut.u
-[/code]
-3. Delete all ServerExt localization files. It's here:
-[code]
-Client:
-C:\Users\<YOUR_USERNAME>\Documents\My Games\KillingFloor2\KFGame\Localization\
-[/code]
-Check all folders and delete all ServerExt.* files you find.
-4. Re-subscribe to this mod and try again.
+[h1]📚 More info[/h1]
+[list]
+[*][h1][url=https://steamcommunity.com/workshop/filedetails/discussion/2085786712/4241773359646835902/]⚙️ Setup[/url][/h1]
+[*][h1][url=https://steamcommunity.com/workshop/filedetails/discussion/2085786712/4241773359647296750/]🌟 Examples[/url][/h1]
+[*][h1][url=https://steamcommunity.com/workshop/filedetails/discussion/2085786712/2942494909176752884]🌍 Localization[/url][/h1]
+[/list]
 
-[h1]If configs are not created[/h1]
+[h1]🤐 If not working or you have no text[/h1]
+Older versions of ServerExt have the same file names - this can cause conflicts if you subscribe to them. Therefore:
 [olist]
-[*]Create the missing configs manually, then add the following content to them ([u]only for configs that you created manually[/u]):
-
-[*]Put in [b]KFServerExtMut.ini[/b] this:
-[b][ServerExtMut.ServerExtMut]
-SettingsInit=0[/b]
-
-[*]Put in [b]KFxMapVote.ini[/b] this:
-[b][ServerExtMut.xVotingHandler]
-ConfigVersion=0[/b]
-
-[*]Put in [b]KFServerExt.ini[/b] this: [url=https://gist.githubusercontent.com/GenZmeY/616b6f845f9829c93976f42f6c48505a/raw/1a8c8409d61a2908d5c854ced0932b8ed43a7f51/KFServerExt-Default.ini]<github gist>[/url] [b](*)[/b]
-
-[*]Start the game/server along with the ServerExt, then check the configs - content should be generated.
+[*]Check your subscriptions. If you are subscribed to other versions of the mutator, cancel them.
+[*]Clear the cache, it's here:
+[b]Client:[/b]
+[code]C:\Users\<username>\Documents\My Games\KillingFloor2\KFGame\Cache\[/code]
+[b]Server:[/b]
+[code]<KF2_DIR>/Binaries/Win64/steamapps/workshop/content/232090/
+<KF2_DIR>/KFGame/Cache/[/code]
+[*]Delete all ServerExt localization files. It's here (client only):
+[code]C:\Users\<username>\Documents\My Games\KillingFloor2\KFGame\Localization\[/code]
+Check all folders and delete all ServerExt.* files you find.
+[*]Try starting the game/server again.
 [/olist]
 
-[b](*)[/b]Thanks to [url=https://steamcommunity.com/profiles/76561198105638699]Cloud[/url] for this file and instructions!
+[h1]🌍 Credits[/h1]
+[b]Developers:[/b]
+[list]
+[*][url=https://steamcommunity.com/profiles/76561197975509070]Marco[/url]
+[*][url=https://steamcommunity.com/profiles/76561197997881512]ForrestMarkX[/url]
+[*][url=https://steamcommunity.com/profiles/76561198001617867]GenZmeY[/url]
+[*][url=https://steamcommunity.com/profiles/76561198143883210]inklesspen[/url]
+[*][url=https://steamcommunity.com/profiles/76561198042219365]secret[/url]
+[*][url=https://steamcommunity.com/profiles/76561198004271210]Scaredkid93[/url]
+[*][url=https://steamcommunity.com/profiles/76561198200630473/]小曦曦[/url]
+[/list]
+[b]Translators:[/b]
+[list]
+[*][url=https://steamcommunity.com/profiles/76561198001617867]GenZmeY[/url] - Russian [RUS]
+[*][url=https://steamcommunity.com/profiles/76561197967822972]MilkTeaFox[/url] - Traditional Chinese [CHT]
+[*][url=https://steamcommunity.com/profiles/76561198930643117]あさぴっぴ1020[/url] - Japanese [JPN]
+[*][url=https://steamcommunity.com/profiles/76561198080866131]Jason Voorehes [/url] - Spanish [ESN]
+[*][url=https://steamcommunity.com/profiles/76561198200630473/]小曦曦[/url] - Simplified Chinese [CHN]
+[/list]
+[b]Other Credits:[/b]
+[list]
+[*][url=https://steamcommunity.com/profiles/76561198105638699]Cloud[/url] - Help with instructions for solving the issue of missing configs.
+[*]The cat on the cover is Meawbin (original character by [url=https://x.com/horrormove]Cotton Valent[/url]).
+[/list]
 
-[h1]Bug reports[/h1]
-If you find a bug, please create a new issue here:
-[u]https://github.com/GenZmeY/KF2-Server-Extension/issues[/u]
+[h1]☑️ Status: Completed[/h1]
+✔️ The mutator works with the current version of the game (v1150) and I have implemented everything I planned.
+⛔️ Development has stopped: I no longer have the time or motivation to maintain this mod. No further updates or bug fixes are planned.
 
-Describe what the bug looks like and how we can reproduce it.
-
-[h1]Localization[/h1]
-ServerExt supports localization now!
-
-If you have a desire to help translate ServerExt into other languages, you can read how to do it in this thread: [u][url=https://steamcommunity.com/workshop/filedetails/discussion/2085786712/2942494909176752884]Localization[/url][/u]
-
-[h1]Credits[/h1]
-[url=https://steamcommunity.com/profiles/76561197975509070]Marco[/url]
-[url=https://steamcommunity.com/profiles/76561197997881512]ForrestMarkX[/url]
-[url=https://steamcommunity.com/profiles/76561198143883210]inklesspen[/url]
-[url=https://steamcommunity.com/profiles/76561198001617867]GenZmeY[/url]
-[url=https://steamcommunity.com/profiles/76561198042219365]secret[/url]
-[url=https://steamcommunity.com/profiles/76561198004271210]Scaredkid93[/url]
-[url=https://www.deviantart.com/cottonvalent]CottonValent[/url][b](*)[/b]
-
-[b]Translators[/b]
-[url=https://steamcommunity.com/profiles/76561198001617867]GenZmeY[/url] - Russian [RUS];
-[url=https://steamcommunity.com/profiles/76561197967822972]MilkTeaFox[/url] - Traditional Chinese [CHT];
-[url=https://steamcommunity.com/profiles/76561198930643117]あさぴっぴ1020[/url] - Japanese [JPN];
-[url=https://steamcommunity.com/profiles/76561198080866131]Jason Voorehes [/url] - Spanish [ESN];
-[url=https://steamcommunity.com/profiles/76561198200630473/]小曦曦[/url] - Simplified Chinese [CHN];
-
-[h1]Sources[/h1]
-[url=https://github.com/GenZmeY/KF2-Server-Extension]https://github.com/GenZmeY/KF2-Server-Extension[/url] [b](GNU GPLv3)[/b]
-
-[b](*)[/b] CottonValent - is the artist who created gorgeous cat on the preview (I don’t know why he is here, it happened).
+[h1]📜 Sources[/h1]
+https://github.com/GenZmeY/KF2-Server-Extension [b](GNU GPLv3)[/b]
