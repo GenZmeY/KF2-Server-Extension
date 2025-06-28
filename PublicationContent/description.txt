@@ -116,4 +116,4 @@ Check all folders and delete all ServerExt.* files you find.
 ⛔️ Development has stopped: I no longer have the time or motivation to maintain this mod. No further updates or bug fixes are planned.
 
 [h1]📜 Sources[/h1]
-https://github.com/GenZmeY/KF2-Server-Extension [b](GNU GPLv3)[/b]
+https://github.com/GenZmeY/KF2-Server-Extension [b](GPL-3.0-or-later)[/b]

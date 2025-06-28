@@ -1,1 +1,1 @@
-ServerExt (RPG mod)
+Server Extension
